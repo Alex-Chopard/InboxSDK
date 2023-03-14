@@ -61,7 +61,7 @@ InboxSDK.load(2, 'custom-view').then(function(sdk) {
   customIconElement.style.background = 'blue';
   customIconElement.innerHTML = '<div>X</div>';
 
-  sdk.NavMenu.addNavItem({
+  const customNavItem = sdk.NavMenu.addNavItem({
     name: 'Custom icon element',
     iconElement: customIconElement,
     routeID: 'Custom icon element',
@@ -74,6 +74,13 @@ InboxSDK.load(2, 'custom-view').then(function(sdk) {
       }
     }
   });
+
+  setTimeout(() => {
+    customNavItem.updateNavItem({
+      name: 'Custom icon element updated',
+      subtitle: '42',
+    })
+  }, 5000)
 
   sdk.NavMenu.addNavItem({
     name: 'beep',
@@ -217,6 +224,19 @@ InboxSDK.load(2, 'custom-view').then(function(sdk) {
       }
     }
   });
+
+  setTimeout(() => {
+    grouperSub.updateNavItem({
+      name: 'Saved View 4 updated',
+      subtitle: '42',
+      accessory: {
+        type: 'SETTINGS_BUTTON',
+        onClick: function(event) {
+          event.dropdown.el.innerHTML = 'Hello, world!';
+        }
+      }
+    })
+  }, 5000)
 
   grouperSub.addNavItem({
     name: 'Lion item',

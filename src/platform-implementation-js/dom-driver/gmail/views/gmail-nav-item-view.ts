@@ -967,7 +967,7 @@ export default class GmailNavItemView {
       return;
     }
 
-    querySelector(this._element, '.bsU').innerHTML += autoHtml`${
+    querySelector(this._element, '.bsU').innerHTML = autoHtml`${
       navItemDescriptor.subtitle || ''
     }`;
   }

@@ -86,6 +86,20 @@ export default class NativeNavItemView extends EventEmitter {
       );
     }
   }
+
+  async updateNavItem (navItemDescriptor: Object) {
+    if (this.destroyed) return
+    const navItemDescriptorPropertyStream = kefirCast(
+      Kefir,
+      navItemDescriptor
+    ).toProperty();
+
+    const members = get(memberMap, this);
+    if (!members) return
+    const navItemViewDriver: GmailNavItemView = await members.navItemViewDriverPromise
+    if (!navItemViewDriver) return
+    navItemViewDriver.setNavItemDescriptor(navItemDescriptorPropertyStream)
+  }
 }
 
 function _handleStreamEvent(emitter, event) {
